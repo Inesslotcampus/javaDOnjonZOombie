@@ -24,12 +24,12 @@ public class CharacterController {
     @GetMapping("/")
     String getCharacter(Model model) {
         model.addAttribute("characters", characterDao.findAll());
-        model.addAttribute("ines", new CharacterForm("test", "type", 6));
+        model.addAttribute("characterForm", new CharacterForm("test", "type", 6));
         return "character";
     }
 
     @RequestMapping(value={"/save"},method = RequestMethod.POST)
-    public String savePerson(Model model, @ModelAttribute("ines") CharacterForm characterForm) {
+    public String savePerson(Model model, @ModelAttribute CharacterForm characterForm) {
 
         String name = characterForm.getName();
         String type = characterForm.getType();

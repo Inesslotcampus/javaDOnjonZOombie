@@ -30,6 +30,12 @@ Donjon et Zoombies</h1>
             <th scope="col" class="py-3 px-6">
                 type
             </th>
+            <th scope="col" class="py-3 px-6 bg-gray-50 dark:bg-gray-800">
+                modification
+            </th>
+            <th scope="col" class="py-3 px-6">
+                supression
+            </th>
         </tr>
         </thead>
         <tbody>
@@ -38,6 +44,8 @@ Donjon et Zoombies</h1>
             <td class="py-4 px-6"><span th:text="${character.name}">  </span></td>
             <td class="py-3 px-6 bg-gray-50 dark:bg-gray-800"><span th:text="${character.levelLife}">  </span></td>
             <td class="py-4 px-6"><span th:text="${character.type}">  </span></td>
+            <td class="py-3 px-6 bg-gray-50 dark:bg-gray-800"> <button type="button" class="p-4  text-white bg-indigo-800 hover:bg-indigo-500 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"></button></td>
+            <td class="py-2 px-6"> <button type="button" class="p-4  text-white bg-red-800 hover:bg-red-500 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"></button></td>
         </tr>
         </tbody>
     </table>
@@ -52,7 +60,7 @@ Ajouter un personnage</button>
     <div class="modal-dialog">
         <div class="modal-content">
                 <h5 class="p-4 text-3xl font-bold text-center" id="exampleModalLabel">Nouveau personnage</h5>
-            <form th:action="@{/save}" th:object="${ines}" method="POST">
+            <form th:action="@{/save}" th:object="${characterForm}" method="POST">
                 <div class="m-4 flex justify-end">
                     <label for="exampleInputEmail1" class="m-4 block pt-2 text-sm font-medium text-gray-900 dark:text-gray-400">Nom</label>
                     <input  type="text" th:field="*{name}" class="w-3/4 my-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -70,7 +78,7 @@ Ajouter un personnage</button>
                 </div>
                 <div class="flex justify-center">
 <!--                    <button type="button" class="p-2  text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" data-bs-dismiss="modal">Fermer</button>-->
-                    <input type="submit" class="" value="Create" />
+                    <input type="submit" class="" value="Submit" />
 <!--                    <button type="submit" class="p-2  text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"   >Enregistrer</button>-->
                 </div>
             </form>
