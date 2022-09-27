@@ -3,6 +3,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 import com.example.donjonZoobie.model.CharacterResponse;
 
 
@@ -29,10 +31,20 @@ public class CharacterDaoImpl implements CharacterDao {
         }
         return null;
     }
+    @Override
+    public Long getMaxId(){
+         return characteresResponse.stream().map(el -> el.getId()).max(Long::compare).get();
+    }
 
     @Override
     public CharacterResponse save(CharacterResponse characterResponse) {
         characteresResponse.add(characterResponse);
         return characterResponse;
+    }
+
+    @Override
+    public boolean delete(int id) {
+         characteresResponse= characteresResponse.stream().filter(el->el.getId()!=id).collect(Collectors.toList());
+        return true;
     }
 }

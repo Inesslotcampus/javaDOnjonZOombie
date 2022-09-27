@@ -5,4 +5,6 @@ public interface CharacterDao {
     List<CharacterResponse> findAll();
     CharacterResponse findById(int id);
     CharacterResponse save(CharacterResponse characterResponse);
+    boolean delete(int id);
+    Long getMaxId();
  }

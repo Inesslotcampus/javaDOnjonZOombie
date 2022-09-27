@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+
+<h1 class="p-4 text-3xl font-bold text-center">
+   Un personnage</h1>
+<div class="flex flex-col">
+    <div class="border-b border-gray-200 dark:border-gray-700 mx-44">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+            <tr>
+                <th scope="col" class="py-3 px-6 bg-gray-50 dark:bg-gray-800">
+                    id
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    nom
+                </th>
+                <th scope="col" class="py-3 px-6 bg-gray-50 dark:bg-gray-800">
+                    nombre de vie
+                </th>
+                <th scope="col" class="py-3 px-6">
+                    type
+                </th>
+
+                <th scope="col" class="py-3 px-6">
+                    supression
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr  class="border-b border-gray-200 dark:border-gray-700" th:each="character : ${characters}">
+                <td class="py-3 px-6 bg-gray-50 dark:bg-gray-800"><span th:text="${character.id}">  </span></td>
+                <td class="py-4 px-6"><span th:text="${character.name}">  </span></td>
+                <td class="py-3 px-6 bg-gray-50 dark:bg-gray-800"><span th:text="${character.levelLife}">  </span></td>
+                <td class="py-4 px-6"><span th:text="${character.type}">  </span></td>
+                <td class="py-3 px-6 bg-gray-50 dark:bg-gray-800"> <button type="button" class="p-4  text-white bg-red-800 hover:bg-red-500 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"></button></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

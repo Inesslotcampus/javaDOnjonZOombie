@@ -7,6 +7,22 @@ public class CharacterForm {
     private String type;
     private  int levelLife;
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setLevelLife(int levelLife) {
+        this.levelLife = levelLife;
+    }
+
     public CharacterForm(String name, String type, int levelLife) {
         this.name = name;
         this.type = type;
