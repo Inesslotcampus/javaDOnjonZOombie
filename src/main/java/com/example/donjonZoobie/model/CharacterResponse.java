@@ -1,16 +1,22 @@
 package com.example.donjonZoobie.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 public class CharacterResponse {
     private long id;
     private String name;
     private String type;
     private  int levelLife;
 
+
     public CharacterResponse(long id, String name, String type, int levelLife) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.levelLife = levelLife;
+    }
+    public CharacterResponse(){
+
     }
 
     public long getId() {

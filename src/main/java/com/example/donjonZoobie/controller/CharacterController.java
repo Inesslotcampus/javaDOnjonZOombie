@@ -9,6 +9,7 @@ import com.example.donjonZoobie.CharacterDao;
 import com.example.donjonZoobie.model.CharacterForm;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -17,22 +18,17 @@ public class CharacterController {
     @Value("${error.message}")
     private String errorMessage;
     static final String URL_CHARACTER = "http://localhost:8081/api/characters/";
-
+    public RestTemplate restTemplate = new RestTemplate();
     public CharacterController(CharacterDao characterDao) {
         this.characterDao = characterDao;
     }
     ;
     @GetMapping("/")
     String getCharacter(Model model) {
-        RestTemplate restTemplate = new RestTemplate();
-        CharacterResponse[] result =restTemplate.getForObject(URL_CHARACTER,CharacterResponse[].class);
-        if (result != null) {
-            for (CharacterResponse e : result) {
-                System.out.println("Employee: " + e.getName() );
-            }
-        }
 
-        model.addAttribute("characters", characterDao.findAll());
+        List<CharacterResponse> result = Arrays.asList(restTemplate.getForObject(URL_CHARACTER, CharacterResponse[].class));
+
+        model.addAttribute("characters", result);
         model.addAttribute("characterForm", new CharacterForm());
 
         return "character";
@@ -41,7 +37,8 @@ public class CharacterController {
     @GetMapping("/{id}")
     public String getCharacterById(Model model, @PathVariable("id") int id){
 
-model.addAttribute("characters",characterDao.findById(id));
+        CharacterResponse result = restTemplate.getForObject(URL_CHARACTER+id,CharacterResponse.class);
+            model.addAttribute("characters",result);
         return "characterById";
     }
 
@@ -59,11 +56,12 @@ model.addAttribute("characters",characterDao.findById(id));
             model.addAttribute("characters", characterDao.save(characterResponse));
         }
         return "redirect:/";
-//        return "character";
+
     }
     @GetMapping("/delete/{id}")
-    public String deleteCharacterById( Model model, @PathVariable("id") int id){
-        model.addAttribute("characters",characterDao.delete(id));
-return "redirect:/";
+    public void deleteCharacterById( Model model, @PathVariable("id") int id){
+        restTemplate.delete(URL_CHARACTER, id);
+//    model.addAttribute("characters",characterDao.delete(id));
+//return "redirect:/";
     }
 }
